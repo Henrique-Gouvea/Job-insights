@@ -1,18 +1,15 @@
+import csv
 from functools import lru_cache
 
 
 @lru_cache
 def read(path):
-    """Reads a file from a given path and returns its contents
-
-    Parameters
-    ----------
-    path : str
-        Full path to file
-
-    Returns
-    -------
-    list
-        List of rows as dicts
-    """
-    return []
+    try:
+        with open(path) as file:
+            jobs = list(csv.DictReader(file))
+            print(jobs[0])
+            return jobs
+    except FileNotFoundError as exc:
+        print("arquivo nao encontrado" + exc)
+    except csv.Error as err:
+        print("Arquivo nao CSV error: %s" % err)
