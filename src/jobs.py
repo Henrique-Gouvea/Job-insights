@@ -7,7 +7,6 @@ def read(path):
     try:
         with open(path) as file:
             jobs = list(csv.DictReader(file))
-            print(jobs[0])
             return jobs
     except FileNotFoundError as exc:
         print("arquivo nao encontrado" + exc)
